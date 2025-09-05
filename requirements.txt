@@ -1,0 +1,12 @@
+numpy
+pandas
+seaborn
+matplotlib
+scikit-learn
+optuna
+catboost
+xgboost
+dvc
+mlflow==2.8.1
+ipykernel
+xlrd

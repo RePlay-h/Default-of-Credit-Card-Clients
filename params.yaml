@@ -1,0 +1,4 @@
+preprocess:
+  input: data/raw/clients.xls
+  output: data/processed/data.csv
+  
