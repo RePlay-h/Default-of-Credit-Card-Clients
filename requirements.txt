@@ -10,3 +10,4 @@ dvc
 mlflow==2.8.1
 ipykernel
 xlrd
+scipy

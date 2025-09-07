@@ -2,3 +2,9 @@ preprocess:
   input: data/raw/clients.xls
   output: data/processed/data.csv
   
+train:
+  input: data/processed/data.csv
+  baseline_path: model/baseline.pkl
+  boosting_path: model/boosting.pkl
+  output_X: test/X_test.csv
+  output_y: test/y_test.csv
