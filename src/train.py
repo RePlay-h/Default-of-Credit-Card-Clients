@@ -89,6 +89,8 @@ def train(X_train, y_train, boosting_path):
 
 # save test samples into csv-files
 def save_test_samples(X_test, y_test, X_test_path, y_test_path):
+    os.makedirs(os.path.dirname(X_test_path), exist_ok=True)
+    os.makedirs(os.path.dirname(y_test_path), exist_ok=True)
     X_test.to_csv(X_test_path)
     y_test.to_csv(y_test_path)
 
