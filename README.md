@@ -71,6 +71,13 @@ Confusion matrix:
 
 ---
 
+## ⚙️ Reproducibility and Experiment Tracking
+This project uses **DVC** to version control data and pipeline stages, ensuring that all datasets and preprocessing steps are reproducible.  
+**MLflow** is integrated for experiment tracking, allowing logging of model parameters, metrics, and artifacts.  
+Together, DVC and MLflow make it easy to reproduce experiments, compare models, and manage data and models in a systematic way.  
+
+---
+
 ## 📂 Структура проекта
 ```
 ├── .dvc/ # DVC system files
