@@ -1,0 +1,76 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/preprocess.py data/raw/clients.xls data/processed/data.csv
+    deps:
+    - path: data/raw/clients.xls
+      hash: md5
+      md5: 25a64500f543274fd6c9db905bfeb968
+      size: 5539328
+    - path: src/preprocess.py
+      hash: md5
+      md5: acc659eee2f4a44b647bc73a55bd45c4
+      size: 1535
+    outs:
+    - path: data/processed/data.csv
+      hash: md5
+      md5: 93f9487969cce90007ac4eb868fb04b5
+      size: 3887399
+  train:
+    cmd: python src/train.py model/baseline.pkl model/boosting.pkl 
+      data/test/X_test.csv data/test/y_test.csv data/processed/data.csv
+    deps:
+    - path: data/processed/data.csv
+      hash: md5
+      md5: 93f9487969cce90007ac4eb868fb04b5
+      size: 3887399
+    - path: src/train.py
+      hash: md5
+      md5: bb75791d75b21c8a73ca2299217e1f2d
+      size: 4212
+    outs:
+    - path: data/test/X_test.csv
+      hash: md5
+      md5: 1d7b6b9a245fd9eec08676a351bd7a37
+      size: 1263830
+    - path: data/test/y_test.csv
+      hash: md5
+      md5: fe82c05c12c697ec327d381fd3ec0d2b
+      size: 27028
+    - path: model/baseline.pkl
+      hash: md5
+      md5: a4ba2d79f38e4a5c85ffb048225238c2
+      size: 22084
+    - path: model/boosting.pkl
+      hash: md5
+      md5: b3c5f94c85297083a7b6cde73fe32426
+      size: 407937
+  test:
+    cmd: python src/test.py model/baseline.pkl model/boosting.pkl 
+      data/test/X_test.csv data/test/y_test.csv metrics/metrics.json
+    deps:
+    - path: data/test/X_test.csv
+      hash: md5
+      md5: 1d7b6b9a245fd9eec08676a351bd7a37
+      size: 1263830
+    - path: data/test/y_test.csv
+      hash: md5
+      md5: fe82c05c12c697ec327d381fd3ec0d2b
+      size: 27028
+    - path: model/baseline.pkl
+      hash: md5
+      md5: a4ba2d79f38e4a5c85ffb048225238c2
+      size: 22084
+    - path: model/boosting.pkl
+      hash: md5
+      md5: b3c5f94c85297083a7b6cde73fe32426
+      size: 407937
+    - path: src/test.py
+      hash: md5
+      md5: b8da058b6770ab46cd55550ff854cdf3
+      size: 2241
+    outs:
+    - path: metrics/metrics.json
+      hash: md5
+      md5: 8e8c789a6b79f78dad8776f4a195ad18
+      size: 370

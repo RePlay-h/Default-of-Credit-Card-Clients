@@ -3,6 +3,9 @@ import numpy as np
 
 import yaml
 
+import warnings
+
+warnings.filterwarnings("ignore")
 
 def preprocess(data_path):
     
@@ -30,7 +33,11 @@ def preprocess(data_path):
     # if payment_ratio < 1 - a client pays less than his debt
     bill_cols = ["BILL_AMT1", "BILL_AMT2", "BILL_AMT3", "BILL_AMT4", "BILL_AMT5", "BILL_AMT6"]
     pay_amt_cols  = ["PAY_AMT1", "PAY_AMT2", "PAY_AMT3", "PAY_AMT4", "PAY_AMT5", "PAY_AMT6"]
-    df['payment_ratio'] = df[pay_amt_cols].sum(axis=1) / df[bill_cols].sum(axis=1)
+    df['payment_ratio'] = np.where(
+        df[bill_cols].sum(axis=1) != 0,
+        df[pay_amt_cols].sum(axis=1) / df[bill_cols].sum(axis=1),
+        1
+    )
 
     return df
 
@@ -40,7 +47,7 @@ if __name__ == '__main__':
     
     df = preprocess(params['input'])
 
-    df.to_csv(params['output'])
+    df.to_csv(params['output'], index=False)
 
     print(f'Processed dataset: {params['output']}')
 

@@ -1,3 +1,5 @@
 env
 .dvc
 main.ipynb
+catboost_info
+dvc.lock

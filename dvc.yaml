@@ -1,0 +1,30 @@
+stages:
+  preprocess:
+    cmd: python src/preprocess.py data/raw/clients.xls data/processed/data.csv
+    deps:
+    - data/raw/clients.xls
+    - src/preprocess.py
+    outs:
+    - data/processed/data.csv
+  train:
+    cmd: python src/train.py model/baseline.pkl model/boosting.pkl 
+      data/test/X_test.csv data/test/y_test.csv data/processed/data.csv
+    deps:
+    - data/processed/data.csv
+    - src/train.py
+    outs:
+    - data/test/X_test.csv
+    - data/test/y_test.csv
+    - model/baseline.pkl
+    - model/boosting.pkl
+  test:
+    cmd: python src/test.py model/baseline.pkl model/boosting.pkl 
+      data/test/X_test.csv data/test/y_test.csv metrics/metrics.json 
+    deps:
+    - data/test/X_test.csv
+    - data/test/y_test.csv
+    - model/baseline.pkl
+    - model/boosting.pkl
+    - src/test.py
+    outs:
+    - metrics/metrics.json
