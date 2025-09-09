@@ -7,6 +7,9 @@ import mlflow
 import mlflow.sklearn
 from mlflow.models import infer_signature
 
+import dagshub
+
+
 import yaml
 import json
 import pickle
@@ -76,6 +79,9 @@ def calculate_metrics(model_name, X_test, y_test, model_path):
 
 
 if __name__ == '__main__':
+
+    dagshub.init(repo_owner='RePlay-h', repo_name='Default-of-Credit-Card-Clients', mlflow=True)
+
     # load parameters for this file
     params = yaml.safe_load(open('params.yaml'))['test']
 
@@ -107,3 +113,5 @@ if __name__ == '__main__':
 
     with open(params['metrics_path'], 'w', encoding='utf-8') as f:
         json.dump(my_metrics, f, indent=4)
+
+    mlflow.autolog()
