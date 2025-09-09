@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1757443203166
+current_stage: None
+description: ''
+last_updated_timestamp: 1757443203166
+name: CatBoost for defaults
+run_id: 4f747a1e70184397855d5a7e9d949fad
+run_link: ''
+source: file:///C:/Users/m4rce/Documents/Programming/DefaultOfCredit/mlruns/0/4f747a1e70184397855d5a7e9d949fad/artifacts/CatBoost
+status: READY
+status_message: null
+storage_location: file:///C:/Users/m4rce/Documents/Programming/DefaultOfCredit/mlruns/0/4f747a1e70184397855d5a7e9d949fad/artifacts/CatBoost
+user_id: null
+version: 1

@@ -26,8 +26,8 @@ stages:
       size: 3887399
     - path: src/train.py
       hash: md5
-      md5: bb75791d75b21c8a73ca2299217e1f2d
-      size: 4212
+      md5: eac60672f897cb5d62c8e72e01527ae4
+      size: 4249
     outs:
     - path: data/test/X_test.csv
       hash: md5
@@ -39,12 +39,12 @@ stages:
       size: 27028
     - path: model/baseline.pkl
       hash: md5
-      md5: a4ba2d79f38e4a5c85ffb048225238c2
-      size: 22084
+      md5: b42eb9aefa094c54ba07f4f371a35b7e
+      size: 22104
     - path: model/boosting.pkl
       hash: md5
-      md5: b3c5f94c85297083a7b6cde73fe32426
-      size: 407937
+      md5: 63ecbcb3cd4519475e45f96b5dd72700
+      size: 11351693
   test:
     cmd: python src/test.py model/baseline.pkl model/boosting.pkl 
       data/test/X_test.csv data/test/y_test.csv metrics/metrics.json
@@ -59,12 +59,12 @@ stages:
       size: 27028
     - path: model/baseline.pkl
       hash: md5
-      md5: a4ba2d79f38e4a5c85ffb048225238c2
-      size: 22084
+      md5: b42eb9aefa094c54ba07f4f371a35b7e
+      size: 22104
     - path: model/boosting.pkl
       hash: md5
-      md5: b3c5f94c85297083a7b6cde73fe32426
-      size: 407937
+      md5: 63ecbcb3cd4519475e45f96b5dd72700
+      size: 11351693
     - path: src/test.py
       hash: md5
       md5: b8da058b6770ab46cd55550ff854cdf3
@@ -72,5 +72,5 @@ stages:
     outs:
     - path: metrics/metrics.json
       hash: md5
-      md5: 8e8c789a6b79f78dad8776f4a195ad18
-      size: 370
+      md5: a4ec572d91632f668b2118f6eac90de0
+      size: 371

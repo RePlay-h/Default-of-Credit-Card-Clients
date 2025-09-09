@@ -1,0 +1,1 @@
+{'C': <scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x0000012BB9896790>, 'penalty': ['elasticnet', 'l1', 'l2'], 'l1_ratio': <scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x0000012BB9E8EB90>}

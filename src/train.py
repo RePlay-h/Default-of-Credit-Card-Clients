@@ -7,7 +7,8 @@ import os
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import RandomizedSearchCV 
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import average_precision_score
 from scipy.stats import loguniform, uniform
 from catboost import CatBoostClassifier
 import optuna
@@ -31,7 +32,7 @@ def train_baseline(X_train, y_train, model_path):
         estimator=lr,
         param_distributions=distributions,
         n_iter=30,
-        scoring='roc_auc',
+        scoring='average_precision',
         cv=7,
         random_state=101,
         verbose=0
@@ -65,12 +66,11 @@ def objective(trial):
     }
 
     model = CatBoostClassifier(**params)
+    model.fit(X_train, y_train)
+    y_pred_proba = model.predict_proba(X_train)[:, 1]
+    pr_auc = average_precision_score(y_train, y_pred_proba)
 
-    aucs = cross_val_score(
-        model, X_train, y_train, cv=5, scoring='roc_auc'
-    )
-
-    return aucs.mean()
+    return pr_auc
 
 def train(X_train, y_train, boosting_path):
     # define categorial features (SEX, EDUCATION, MARRIAGE)

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/m4rce/Documents/Programming/DefaultOfCredit/mlruns/0/358bdb8f0b914af59ae74030c90d47ba/artifacts
+end_time: 1757443013937
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 358bdb8f0b914af59ae74030c90d47ba
+run_name: LogisticRegression
+run_uuid: 358bdb8f0b914af59ae74030c90d47ba
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757443010601
+status: 3
+tags: []
+user_id: m4rce

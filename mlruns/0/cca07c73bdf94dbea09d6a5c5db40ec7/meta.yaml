@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/m4rce/Documents/Programming/DefaultOfCredit/mlruns/0/cca07c73bdf94dbea09d6a5c5db40ec7/artifacts
+end_time: 1757442958493
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cca07c73bdf94dbea09d6a5c5db40ec7
+run_name: CatBoost
+run_uuid: cca07c73bdf94dbea09d6a5c5db40ec7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757442958395
+status: 4
+tags: []
+user_id: m4rce
