@@ -74,7 +74,6 @@ def objective(trial):
 
 def train(X_train, y_train, boosting_path):
     # define categorial features (SEX, EDUCATION, MARRIAGE)
-    cat_features = [1, 2, 3]
 
     # select hyperparams
     print("Start training and tuning CatBoost")
@@ -85,7 +84,7 @@ def train(X_train, y_train, boosting_path):
     print(f"Best AUC on train (CatBoost): {study.best_value}")
 
     best_model = CatBoostClassifier(**study.best_params)
-    best_model.fit(X_train, y_train, cat_features=cat_features)
+    best_model.fit(X_train, y_train)
 
     os.makedirs(os.path.dirname(boosting_path), exist_ok=True)
     pickle.dump(best_model, open(boosting_path, 'wb'))
