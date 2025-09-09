@@ -78,7 +78,7 @@ Together, DVC and MLflow make it easy to reproduce experiments, compare models, 
 
 ---
 
-## 📂 Структура проекта
+## 📂 Project Structure
 ```
 ├── .dvc/ # DVC system files
 ├── catboost_info/ # CatBoost internal files
