@@ -1,57 +1,51 @@
 # Default of Credit Card Clients
 
-В этом проекте решается задача предсказания вероятности дефолта держателей кредитных карт на основе данных о клиентах банков Тайваня.  
-Данные взяты с [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients).  
+This project focuses on predicting the probability of default for credit card holders based on customer data from Taiwanese banks.  
+The dataset is taken from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients).  
 
-Предсказание дефолта важно для банков, так как помогает снижать кредитные риски, корректировать лимиты и оптимизировать выдачу кредитов.  
-
----
-
-## 📊 Датасет
-
-Исходные данные содержат информацию о **30 000 клиентах**, включая:  
-- кредитный лимит (LIMIT_BAL),  
-- пол, образование, семейное положение, возраст,  
-- историю платежей за 6 месяцев (PAY_0 … PAY_6),  
-- задолженность по счетам (BILL_AMT1 … BILL_AMT6),  
-- сумму платежей (PAY_AMT1 … PAY_AMT6),  
-- целевую переменную default_payment_next_month — факт дефолта в следующем месяце.  
-
-Класс сильно несбалансирован (около 22% дефолтов), поэтому при обучении учитывалась работа с дисбалансом.  
+Predicting defaults is important for banks as it helps reduce credit risk, adjust credit limits, and optimize lending decisions.  
 
 ---
 
-## 🛠️ Фичеинжиниринг
+## 📊 Dataset
 
-Для повышения качества моделей были добавлены новые признаки:
+The raw data contains information on **30,000 clients**, including:  
+- Credit limit (`LIMIT_BAL`)  
+- Gender, education, marital status, age  
+- Payment history over 6 months (`PAY_0 … PAY_6`)  
+- Bill amounts (`BILL_AMT1 … BILL_AMT6`)  
+- Payment amounts (`PAY_AMT1 … PAY_AMT6`)  
+- Target variable `default_payment_next_month` — whether the client defaulted in the next month  
 
-1. **Количество просрочек**  
-   Сумма индикаторов (PAY_i > 0) по всем месяцам.  
-
-2. **Debt ratio**  
-   Отношение задолженности к кредитному лимиту:  
-   
-   $\text{debt\_ratio} = \frac{\text{BILL\_AMT}}{\text{LIMIT\_BAL}}$
-   
-
-3. **Payment ratio**  
-   Отношение задолженности к произведённому платежу:  
-   
-   $\text{payment\_ratio} = \frac{\text{BILL\_AMT}}{\text{PAY\_AMT}}$
-
+The classes are highly imbalanced (about 22% defaults), so handling class imbalance was taken into account during model training.  
 
 ---
 
-## 🤖 Модели и метрики
+## 🛠️ Feature Engineering
 
-- **Logistic Regression** — бейзлайн.  
-- **CatBoostClassifier** — основная модель, гиперпараметры подбирались с помощью Optuna (алгоритм TPE).  
+To improve model performance, new features were added:
 
-Основная метрика — **AUC ROC**, так как данные несбалансированы. Дополнительно измерялись precision, recall и f1-score.  
+1. **Number of Delinquencies**  
+   Sum of indicators (PAY_i > 0) across all months  
+
+2. **Debt Ratio**  
+   Ratio of total debt to credit limit  
+
+3. **Payment Ratio**  
+   Ratio of debt to actual payment made  
+
+---
+
+## 🤖 Models and Metrics
+
+- **Logistic Regression** — baseline model  
+- **CatBoostClassifier** — main model, hyperparameters tuned with Optuna (TPE algorithm)  
+
+The main metric is **AUC ROC**, due to class imbalance. Additionally, precision, recall, and F1-score were measured.  
 
 ### Logistic Regression
 - AUC: `0.6396`  
-- Precision: `0.0` 
+- Precision: `0.0`  
 - Recall: `0.0`  
 - F1: `0.0`  
 
@@ -73,7 +67,7 @@ Confusion matrix:
 [1246 696]]
 ```
 
-📌 CatBoost значительно превзошёл Logistic Regression и показал более сбалансированные значения precision и recall.  
+📌 CatBoost significantly outperformed Logistic Regression and showed a more balanced precision-recall performance.  
 
 ---
 
@@ -106,11 +100,11 @@ Confusion matrix:
 ├── requirements.txt # зависимости
 └── README.md # описание проекта
 ```
-## ✅ Выводы
+## ✅ Conclusions
 
-- Logistic Regression плохо справилась с дисбалансом классов и почти не предсказывала положительный класс.  
-- CatBoost дал ощутимый прирост (AUC ≈ 0.78) и лучше балансировал precision и recall.  
-- В будущем модель можно улучшить за счёт:
-  - использования **PR AUC** как основной метрики,  
-  - балансировки классов (SMOTE, undersampling, scale_pos_weight),  
+- Logistic Regression struggled with class imbalance and almost never predicted the positive class  
+- CatBoost achieved a significant improvement (AUC ≈ 0.78) and better balanced precision and recall  
+- Future improvements could include:  
+  - using **PR AUC** as the main metric  
+  - handling class imbalance with methods like SMOTE, undersampling, or scale_pos_weight
   
