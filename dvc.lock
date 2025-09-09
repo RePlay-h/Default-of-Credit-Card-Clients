@@ -1,21 +1,5 @@
 schema: '2.0'
 stages:
-  preprocess:
-    cmd: python src/preprocess.py data/raw/clients.xls data/processed/data.csv
-    deps:
-    - path: data/raw/clients.xls
-      hash: md5
-      md5: 25a64500f543274fd6c9db905bfeb968
-      size: 5539328
-    - path: src/preprocess.py
-      hash: md5
-      md5: acc659eee2f4a44b647bc73a55bd45c4
-      size: 1535
-    outs:
-    - path: data/processed/data.csv
-      hash: md5
-      md5: 93f9487969cce90007ac4eb868fb04b5
-      size: 3887399
   train:
     cmd: python src/train.py model/baseline.pkl model/boosting.pkl 
       data/test/X_test.csv data/test/y_test.csv data/processed/data.csv
