@@ -73,32 +73,32 @@ Confusion matrix:
 
 ## 📂 Структура проекта
 ```
-├── .dvc/ # служебные файлы DVC
-├── catboost_info/ # служебные файлы CatBoost
-├── data/ # данные
-│ ├── raw/ # исходные данные
+├── .dvc/ # DVC system files
+├── catboost_info/ # CatBoost internal files
+├── data/ # dataset
+│ ├── raw/ # raw data
 │ │ └── clients.xls
-│ ├── processed/ # подготовленные данные
+│ ├── processed/ # processed data
 │ │ └── data.csv
-│ └── test/ # отложенные тестовые данные
+│ └── test/ # hold-out test data
 │ ├── X_test.csv
 │ └── y_test.csv
-├── env/ # окружение
-├── metrics/ # метрики моделей
+├── env/ # environment
+├── metrics/ # model metrics
 │ └── metrics.json
-├── model/ # сохранённые модели
+├── model/ # saved models
 │ ├── baseline.pkl # Logistic Regression
 │ └── boosting.pkl # CatBoost
-├── src/ # исходный код
-│ ├── preprocess.py # препроцессинг данных
-│ ├── train.py # обучение моделей
-│ └── test.py # инференс и проверка моделей
-├── EDA.ipynb # разведочный анализ данных
-├── params.yaml # параметры обучения
-├── dvc.yaml # пайплайн DVC
-├── dvc.lock # lock-файл DVC
-├── requirements.txt # зависимости
-└── README.md # описание проекта
+├── src/ # source code
+│ ├── preprocess.py # data preprocessing
+│ ├── train.py # model training
+│ └── test.py # inference and evaluation
+├── EDA.ipynb # exploratory data analysis
+├── params.yaml # training parameters
+├── dvc.yaml # DVC pipeline
+├── dvc.lock # DVC lock file
+├── requirements.txt # dependencies
+└── README.md # project description
 ```
 ## ✅ Conclusions
 
